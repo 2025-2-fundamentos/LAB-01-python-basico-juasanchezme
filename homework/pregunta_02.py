@@ -15,3 +15,14 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    traductor = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E':4}
+    with open('files/input/data.csv', 'r') as file:
+        repeticiones = [0,0,0,0,0]
+        for linea in file:
+            datos = linea.split()
+            letra = datos[0].strip()
+            repeticiones[traductor[letra]] += 1
+
+    res = [(letra, repeticiones[i]) for i , letra in enumerate(traductor.keys())]
+
+    return res

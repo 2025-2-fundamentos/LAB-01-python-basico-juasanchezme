@@ -20,3 +20,17 @@ def pregunta_10():
 
 
     """
+    with open("files/input/data.csv", "r") as file:      #?Abrir el archivo en lectura (r)
+            lineas = file.readlines()                    #? Leer las líneas y guardarlas en la lista 'lineas'
+
+    Rta = []                                             #?Crear una lista vacía llamada 'Rta' para almacenar las tuplas
+
+    for linea in lineas:                                 #? Iterar sobre cada línea del archivo
+        partes = linea.strip().split("\t")               #?Eliminar saltos de línea y dividir por tabulaciones
+        letra = partes[0]                                #? Obtener la letra de la columna 1 (parte[0])
+        columna_4 = partes[3].split(",")                 #? Obtener los elementos de la columna 4 (separados por coma) y convertirlos en una lista
+        columna_5 = partes[4].split(",")                 #?Obtener los elementos de la columna 5 (separados por coma) y convertirlos en una lista
+        Rta.append((letra, len(columna_4), len(columna_5)))  #? Añadir una tupla con la letra y las longitudes de las listas de columna 4 y columna 5 a 'Rta'
+
+    return Rta
+print(pregunta_10())

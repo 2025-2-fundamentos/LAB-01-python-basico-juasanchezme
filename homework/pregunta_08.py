@@ -27,3 +27,20 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open("files/input/data.csv", "r") as file:  #? Abrir el archivo en lectura (r)
+        lineas = file.readlines()                    #? Leer las líneas y guardarlas en la lista 'lineas'
+
+    resultado = {}                                   #? Diccionario para almacenar los resultados
+
+    for linea in lineas:
+        partes = linea.strip().split("\t")           #? Eliminar saltos de línea y dividir por tabulaciones
+        letra = partes[0]                            #? Columna 0 (letra)
+        numero = int(partes[1])                      #? Columna 1 (número, convertido a entero)
+
+        if numero not in resultado:                 #? Si el número no está en el diccionario
+            resultado[numero] = set()               #? Inicializar una nueva clave con un conjunto vacío para las letras
+        resultado[numero].add(letra)                #? Añadir la letra al conjunto correspondiente a este número
+    
+    rta = [(num, sorted(list(letras))) for num, letras in sorted(resultado.items())] #? Crear la lista de tuplas, ordenando las letras y los números
+    return rta
+print(pregunta_08())
